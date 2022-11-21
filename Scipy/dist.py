@@ -1,6 +1,7 @@
 from scipy.spatial import distance
+import numpy as np
 
-centers = centers:  [[317.5816955566406, 997.4287719726562], 
+centers =           [[317.5816955566406, 997.4287719726562], 
                      [317.5863952636719, 997.4678955078125], 
                      [317.2605895996094, 997.77392578125], 
                      [512.0897216796875, 948.8949584960938], 
@@ -86,6 +87,11 @@ centers = centers:  [[317.5816955566406, 997.4287719726562],
                      [1144.3004150390625, 174.82737731933594], 
                      [1144.325927734375, 174.80056762695312]]
 
+i = 0
 for center in centers:
-        distances = distance.cdist(center,centers,metric='euclidean')
-        np.savetxt("distance.csv", distances, delimiter=",")
+    print("center: ",center)
+    c = np.array([center])
+    distances = distance.cdist(c,centers,metric='euclidean')
+    print("distances: ",distances)
+    np.savetxt("distance_" + str(i) + "_.csv", distances, delimiter=",")
+    i = i + 1
